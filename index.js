@@ -175,6 +175,9 @@ function displayResults(responseJson) {
 function watchForm() {
   $("form").submit((event) => {
     event.preventDefault();
+
+    // removes the current image
+    $(".results-img").detach();
     getDogImage();
   });
 }
