@@ -1,8 +1,8 @@
 "use strict";
 
 function getDogImage() {
-    const selectedBreed = $("#mybreed option:selected").text();
-  fetch(`https://dog.ceo/api/breed/hound/images/random`)
+    const selectedBreed = $("#mybreed option:selected").val();
+  fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random`)
     .then((response) => response.json())
     .then((responseJson) => displayResults(responseJson))
     .catch((error) => alert("Something went wrong. Try again later."));
@@ -11,7 +11,7 @@ function getDogImage() {
 function displayResults(responseJson) {
   console.log(responseJson);
   //replace the existing image with the new one
-  $(".results").replaceWith(
+  $(".results").append(
     `<img src="${responseJson.message}" class="results-img">`
   );
   //display the results section
