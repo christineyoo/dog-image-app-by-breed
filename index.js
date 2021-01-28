@@ -3,7 +3,11 @@
 function getDogImage() {
   const selectedBreed = $("#mybreed").val().toLowerCase();
   fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
     .then((responseJson) => displayResults(responseJson))
     .catch(error => alert("Something went wrong. Try again later."));
 }
