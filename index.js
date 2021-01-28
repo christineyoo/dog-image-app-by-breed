@@ -144,22 +144,12 @@ const dogBreeds = [
   "wolfhound-irish",
 ];
 
-function mapOptions() {
-  return dogBreeds
-    .map((breed) => `<option value="${breed}">${breed}</option>`)
-    .join("");
-}
-
-function fillOptions() {
-  $("#mybreed").append(mapOptions());
-}
-
 function getDogImage() {
-  const selectedBreed = $("#mybreed option:selected").val();
+  const selectedBreed = $("#mybreed").val().toLowerCase();
   fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random`)
     .then((response) => response.json())
     .then((responseJson) => displayResults(responseJson))
-    .catch((error) => alert("Something went wrong. Try again later."));
+    .catch(error => alert("Something went wrong. Try again later."));
 }
 
 function displayResults(responseJson) {
@@ -185,5 +175,4 @@ function watchForm() {
 $(function () {
   console.log("App loaded! Waiting for submit!");
   watchForm();
-  fillOptions();
 });
